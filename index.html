@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demographic Potential Index (DPI)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+<style>
+        /* Принудительное включение сетки для калькулятора */
+        .main-calculator-section {
+            padding: 60px 0 !important;
+            background-color: #f8fafc !important;
+            display: block !important;
+        }
+        .calc-container {
+            max-width: 1100px !important;
+            margin: 0 auto !important;
+            padding: 0 24px !important;
+        }
+        .calc-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+            gap: 20px !important;
+            width: 100% !important;
+            margin: 32px 0 !important;
+        }
+        .calc-card {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+        }
+        .full-width-calc-card {
+            grid-column: 1 / -1 !important;
+        }
+        .calc-card-header {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+        }
+        .calc-dropdown {
+            width: 100% !important;
+            padding: 10px !important;
+            border-radius: 6px !important;
+            border: 1px solid #cbd5e1 !important;
+            background-color: #ffffff !important;
+        }
+        .period-selector-card {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+            border-radius: 12px !important;
+            padding: 20px !important;
+            margin-bottom: 24px !important;
+        }
+        .period-selector-card select {
+            width: 100% !important;
+            padding: 10px !important;
+            font-size: 16px !important;
+            font-weight: 600 !important;
+    </style>
+    <style>
+    .disclaimer-badge {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 250px;
+        padding: 15px;
+        background: #fff;
+        border-top: 4px solid #d9534f; /* Красная линия сверху */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        font-size: 11px;
+        color: #666;
+        z-index: 1000;
+        border-radius: 4px;
+    }
+</style>
+</head>
+<body>
+    <div class="language-switcher">
+    <button onclick="setLanguage('en')">🇺🇸 EN</button>
+    <button onclick="setLanguage('ru')">🇷🇺 RU</button>
+    <button onclick="setLanguage('kk')">🇰🇿 KZ</button>
+</div>
+    <div class="disclaimer-badge">
+    <strong data-lang="disclaimerTitle">Disclaimer:</strong>
+    <span data-lang="disclaimerText">
+        This is an independent educational research project. The DPI model is conceptual and does not provide official state forecasts.
+    </span>
+</div>
+    <section id="hero" class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-badge">SCIENTIFIC PLATFORM</span>
+                <h1 class="hero-title" data-lang="title">
+    Demographic Potential Index
+</h1>
+            <p class="hero-description" data-lang="heroDescription">
+    A comprehensive, adaptive demographic model combining mortality transitions, traditional fertility behaviors, urbanization vectors, educational attainment, and external systemic shocks into a single integrated quantitative framework.
+                </p>
+                <div class="hero-actions">
+    <a href="#calculator"
+       class="hero-btn-primary"
+       data-lang="startCalculator">
+        Start Calculator
+    </a>
+
+    <a href="#assumptions"
+       class="learn-more-btn"
+       data-lang="learnMore">
+        Learn More
+    </a>
+</div>
+            <div class="hero-visual">
+                <div class="dashboard-mockup">
+                    <div class="dash-header">
+                        <div class="dash-dots"><span></span><span></span><span></span></div>
+                        <div class="dash-title" data-lang="dashboardTitle">
+    DPI Live Model Dashboard
+</div>
+                    </div>
+                    <div class="dash-body">
+                        <div class="chart-container-mock">
+                            <svg viewBox="0 0 300 120" class="mock-svg-chart">
+                                <path d="M 10 100 Q 80 80, 150 50 T 290 30" fill="none" stroke="#2563eb" stroke-width="3" />
+                                <path d="M 10 100 Q 90 95, 160 75 T 290 60" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4" />
+                            </svg>
+                        </div>
+                        <div class="dash-footer-metrics">
+                            <div class="metric-box">
+                                <span class="m-label" data-lang="currentRegion">
+    CURRENT REGION
+</span>
+                                <span class="m-val" data-lang="kazakhstan">
+    Kazakhstan
+</span>
+                            </div>
+                            <div class="metric-box">
+                                <span class="m-label" data-lang="status">
+    STATUS
+</span>
+                                <span class="m-val style-green" data-lang="integrated">
+    Integrated
+</span>>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 3. QUICK STATISTICS -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper">
+                    <span class="material-icons-round">history_toggle_off</span>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label" data-lang="historicalCoverage">Historical Coverage</span>
+                    <h3 class="stat-value">1920–2026</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper">
+                    <span class="material-icons-round">functions</span>
+                </div>
+                <div class="stat-info">
+                   <span class="stat-label" data-lang="indicators">Indicators</span>
+                    <h3 class="stat-value" data-lang="variablesCount">
+    7 Variables
+</h3>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper">
+                    <span class="material-icons-round">layers</span>
+                </div>
+                <div class="stat-info">
+                 <span class="stat-label" data-lang="mathematicalModels">Mathematical Models</span>
+                    <h3 class="stat-value" data-lang="erasCount">
+    3 Eras
+</h3>
+                </div>
+            </div>
+            <div class="stat-card expandable">
+                <div class="stat-icon-wrapper">
+                    <span class="material-icons-round">public</span>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-label" data-lang="regionsCovered">Regions Covered</span>
+                    <h3 class="stat-value" data-lang="kazakhstan">
+    Kazakhstan
+</h3>
+                </div>
+               <div class="stat-badge" data-lang="active">Active</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT DPI SECTION (Вот куда она встала!) -->
+    <section class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <span class="section-badge" data-lang="projectOverview">
+    Project Overview
+</span>
+            <h2 class="section-title" data-lang="whatIsDPI">
+    What is DPI?
+</h2>
+                <p class="about-text highlight" data-lang="aboutText1">
+    The Demographic Potential Index (DPI) is an advanced analytical framework designed to quantify and evaluate a nation's comprehensive demographic resilience and development capacity across varying historical epochs.
+</p>
+               <p class="about-text" data-lang="aboutText2">
+                    Traditional metrics often look at population growth or fertility rates in isolation. DPI was created to solve this fragmentation by synthesizing critical structural shifts — such as mortality transitions, urbanization rates, educational attainment, and reproductive awareness — into a single, unified index ($D$).
+                </p>
+                
+                <div class="about-features">
+                    <div class="feature-item">
+                        <span class="material-icons-round feature-icon">timeline</span>
+                        <div>
+                            <h4 data-lang="longTermAnalysis">
+    Long-Term Demographic Analysis
+</h4>
+                           <p data-lang="longTermAnalysisDesc">
+    Tracks and normalizes data across distinct historical periods, accounting for structural breaks like industrialization and policy shifts.
+</p>
+                    </div>
+                    <div class="feature-item">
+                        <span class="material-icons-round feature-icon">change_history</span>
+                        <div>
+                            <h4 data-lang="transitionModeling">
+    Demographic Transition Modeling
+</h4>
+                            <p data-lang="transitionModelingDesc">
+    Integrates the classic demographic transition stages with modern educational and external coefficients.
+</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-illustration">
+                <div class="academic-preview-card">
+                    <div class="card-inner-border">
+                        <div class="preview-header">
+                            <span class="material-icons-round">biotech</span>
+                           <span data-lang="researchMethodology">
+    Research Methodology Insight
+</span>
+                        </div>
+                        <div class="vector-graphic">
+                            <div class="geo-line line-mortality" title="Mortality Rate (S)"></div>
+                            <div class="geo-line line-fertility" title="Fertility Rate (T)"></div>
+                            <div class="geo-line line-dpi" title="Integrated DPI (D)"></div>
+                        </div>
+                        <div class="graphic-labels">
+                          <span data-lang="stage1">Stage 1</span>
+<span data-lang="stage2">Stage 2</span>
+<span data-lang="stage3">Stage 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="steps-section">
+        <div class="steps-container">
+            <span class="section-badge" data-lang="workflow">
+    Workflow
+</span>
+            <h2 class="section-title" data-lang="howDPIWorks">
+    How DPI Works
+</h2>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <span class="material-icons-round">calendar_today</span>
+                    </div>
+                    <h3 data-lang="selectPeriod">Select Period</h3>
+                   <p data-lang="selectPeriodDesc">
+    Choose the historical era for analysis. The system automatically switches the underlying mathematical formula to match the structural realities of that specific time track.
+</p>
+                </div>
+                
+                <div class="step-arrow">
+                    <span class="material-icons-round">east</span>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <span class="material-icons-round">tune</span>
+                    </div>
+                    <h3 data-lang="chooseCoefficients">Choose Coefficients</h3>
+                    <p data-lang="chooseCoefficientsDesc">
+    Adjust the 7 core variables (Survivance, Fertility, Education, etc.) using historical datasets or custom comparative values for simulation.
+</p>
+                </div>
+                
+                <div class="step-arrow">
+                    <span class="material-icons-round">east</span>
+                </div>
+                
+                <div class="step-card highlight">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <span class="material-icons-round">calculate</span>
+                    </div>
+                    <h3 data-lang="calculateD">Calculate D</h3>
+                    <p data-lang="calculateDDesc">
+    Run the integrated model to generate the composite Demographic Potential Index ($D$), analyze trends, and export normalized data reports.
+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- НАЧАЛО ОБНОВЛЕННОГО РАЗДЕЛА VARIABLES MATRIX -->
+<section id="variables-matrix" style="max-width: 900px; margin: 40px auto 60px auto; padding: 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #334155; line-height: 1.6;">
+    
+   <h2 style="color: #0f172a; text-align: center; font-size: 2.2em; margin-bottom: 10px; font-weight: 700;" data-lang="variablesMatrixTitle">
+    Variables Matrix: Core DPI Coefficients & Scales
+</h2>
+    <p style="text-align: center; color: #64748b; max-width: 700px; margin: 0 auto 40px auto; font-size: 1.05em;" data-lang="variablesMatrixDesc">
+    To evaluate the demographic index for any given period, use the precise operational matrices and historical behavioral scales defined below.
+</p>
+
+    <!-- ВВОДНЫЙ РАЗДЕЛ: ОЦЕНИВАНИЕ DPI -->
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin-bottom: 40px; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);">
+       <h3 style="margin-top: 0; color: #0f172a; font-size: 1.3em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+    <span>📊</span>
+    <span data-lang="dpiEvaluationOverview">DPI Evaluation Overview</span>
+</h3>
+        <p data-lang="dpiEvaluationText1" style="color: #475569; margin-bottom: 15px; font-size: 0.95em; text-align: justify;">
+            The <strong>Demographic Potential Index (DPI)</strong> is a comprehensive composite metric designed to evaluate the structural strength, resilience, and sustainability of a demographic system. By quantitative tracking of multi-layered socioeconomic factors, the model moves beyond simple fertility statistics to identify long-term generational reproduction trends.
+        </p>
+       <p data-lang="dpiEvaluationText2" style="color: #475569; margin-bottom: 0; font-size: 0.95em; text-align: justify;">
+    Each foundational indicator is weighted on a normalized scale, reflecting its evolutionary stage during historical transitions. The final aggregated scoring allows researchers and analysts to categorize any historical period into distinct demographic states, ranging from institutional deadlock up to maximum traditional or balanced sustainable reproduction potential.
+</p>
+    </div>
+
+    <style>
+        .methodology-table { width: 100%; border-collapse: collapse; margin: 15px 0 5px 0; font-size: 0.95em; }
+        .methodology-table th { background-color: #f8fafc; color: #0f172a; font-weight: 600; text-align: left; padding: 12px; border-bottom: 2px solid #e2e8f0; }
+        .methodology-table td { padding: 12px; border-bottom: 1px solid #e2e8f0; color: #334155; }
+        .methodology-table tr:last-child td { border-bottom: none; }
+        .indicator-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .indicator-card h3 { margin-top: 0; color: #0f172a; font-size: 1.3em; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .definition-text { color: #475569; font-size: 0.95em; margin-bottom: 15px; line-height: 1.5; }
+        .definition-label { font-weight: bold; color: #0f172a; }
+    </style>
+
+<!-- 1. S — Survivance (Survival Index) -->
+<div class="indicator-card">
+
+<h3>
+<span>🛡️</span>
+<span data-lang="survivanceTitle">1. S — Survivance (Survival Index)</span>
+</h3>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="definitionLabel">Definition:</span>
+<span data-lang="survivanceDefinition">
+Represents mortality conditions, population survivability, and the overall level of public health.
+</span>
+</div>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="measurementBasis">Measurement Basis:</span>
+<span data-lang="survivanceBasis">
+Crude Death Rate (CDR), deaths per 1,000 population.
+</span>
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+<th style="width:15%;" data-lang="score">Score</th>
+<th style="width:30%;" data-lang="cdrHeader">CDR (per 1,000)</th>
+<th style="width:55%;" data-lang="demographicCondition">Demographic Condition</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>5.0</strong></td>
+<td>0.0 – 9.0</td>
+<td data-lang="survivanceRow1">
+<strong>Optimal</strong> — Advanced healthcare, high life expectancy, and very low mortality.
+</td>
+</tr>
+
+<tr>
+<td><strong>4.0</strong></td>
+<td>9.1 – 12.5</td>
+<td data-lang="survivanceRow2">
+<strong>Stable</strong> — Modern healthcare system with relatively low mortality.
+</td>
+</tr>
+
+<tr>
+<td><strong>3.0</strong></td>
+<td>12.6 – 20.0</td>
+<td data-lang="survivanceRow3">
+<strong>Moderate</strong> — Transitional mortality conditions and improving healthcare.
+</td>
+</tr>
+
+<tr>
+<td><strong>2.0</strong></td>
+<td>20.1 – 50.0</td>
+<td data-lang="survivanceRow4">
+<strong>High Mortality</strong> — Traditional demographic conditions with elevated mortality.
+</td>
+</tr>
+
+<tr>
+<td><strong>1.0</strong></td>
+<td>&gt;50.0</td>
+<td data-lang="survivanceRow5">
+<strong>Critical</strong> — Severe mortality caused by war, famine, epidemics, or humanitarian crises.
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+<!-- 2. T — Tradition (Traditional Fertility Index) -->
+<div class="indicator-card">
+
+<h3>
+<span>👨‍👩‍👧</span>
+<span data-lang="traditionTitle">
+2. T — Tradition (Traditional Fertility Index)
+</span>
+</h3>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="traditionDefinition">
+Represents the strength of traditional fertility behaviour based on the Total Fertility Rate (TFR).
+</span>
+</div>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="measurementBasis">
+Measurement Basis:
+</span>
+
+<span data-lang="traditionBasis">
+Total Fertility Rate (average number of children per woman).
+</span>
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="score">Score</th>
+
+<th data-lang="tfrRange">
+TFR Range
+</th>
+
+<th data-lang="characteristic">
+Characteristic
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>5.0</strong></td>
+<td>≥ 6.0</td>
+<td data-lang="traditionRow1"><strong>Maximum Traditional Potential</strong> — Very large families remain the social norm.</td>
+</tr>
+
+<tr>
+<td><strong>4.5</strong></td>
+<td>5.5 – 5.9</td>
+<td data-lang="traditionRow2"><strong>Very High Traditional Fertility</strong> — Large families remain dominant.</td>
+</tr>
+
+<tr>
+<td><strong>4.0</strong></td>
+<td>4.6 – 5.4</td>
+<td data-lang="traditionRow3"><strong>High Traditional Fertility</strong> — Early demographic transition begins.</td>
+</tr>
+
+<tr>
+<td><strong>3.5</strong></td>
+<td>3.8 – 4.5</td>
+<td data-lang="traditionRow4"><strong>Moderately High Fertility</strong> — Transition toward smaller family sizes.</td>
+</tr>
+
+<tr>
+<td><strong>3.0</strong></td>
+<td>3.0 – 3.7</td>
+<td data-lang="traditionRow5"><strong>Moderate Fertility</strong> — Three-child family model predominates.</td>
+</tr>
+
+<tr>
+<td><strong>2.5</strong></td>
+<td>2.4 – 2.9</td>
+<td data-lang="traditionRow6"><strong>Transitional Fertility</strong> — Traditional fertility patterns weaken.</td>
+</tr>
+
+<tr>
+<td><strong>2.0</strong></td>
+<td>2.0 – 2.3</td>
+<td data-lang="traditionRow7"><strong>Low Fertility</strong> — Near replacement level.</td>
+</tr>
+
+<tr>
+<td><strong>1.5</strong></td>
+<td>1.7 – 1.9</td>
+<td data-lang="traditionRow8"><strong>Very Low Fertility</strong> — Sustained below-replacement fertility.</td>
+</tr>
+
+<tr>
+<td><strong>1.0</strong></td>
+<td>&lt;1.7</td>
+<td data-lang="traditionRow9"><strong>Demographic Deadlock</strong> — Extremely low fertility threatens long-term population replacement.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+<!-- 3. A — Awareness -->
+<div class="indicator-card">
+
+<h3>
+<span>🧠</span>
+<span data-lang="awarenessTitle">
+3. A — Awareness
+</span>
+</h3>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="awarenessDefinition">
+Represents reproductive awareness, family planning, reproductive health knowledge, and individual decision-making regarding childbirth.
+</span>
+
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="score">
+Score
+</th>
+
+<th data-lang="stage">
+Stage
+</th>
+
+<th data-lang="interpretation">
+Interpretation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>5.0</strong></td>
+<td data-lang="awarenessStage1"><strong>Traditional Reproductive Model</strong></td>
+<td data-lang="awarenessRow1">Childbearing is mainly determined by tradition and social norms. Family planning is minimal.</td>
+</tr>
+
+<tr>
+<td><strong>4.5</strong></td>
+<td data-lang="awarenessStage2"><strong>Early Reproductive Awareness</strong></td>
+<td data-lang="awarenessRow2">Basic maternal health knowledge begins to spread.</td>
+</tr>
+
+<tr>
+<td><strong>4.0</strong></td>
+<td data-lang="awarenessStage3"><strong>Family Planning Development</strong></td>
+<td data-lang="awarenessRow3">Access to reproductive information becomes widespread.</td>
+</tr>
+
+<tr>
+<td><strong>3.5</strong></td>
+<td data-lang="awarenessStage4"><strong>High Reproductive Awareness</strong></td>
+<td data-lang="awarenessRow4">Most families consciously plan the number and timing of children.</td>
+</tr>
+
+<tr>
+<td><strong>3.0</strong></td>
+<td data-lang="awarenessStage5"><strong>Modern Reproductive Model</strong></td>
+<td data-lang="awarenessRow5">Childbearing decisions are primarily based on education, career, and personal choice.</td>
+</tr>
+
+<tr>
+<td><strong>2.5</strong></td>
+<td data-lang="awarenessStage6"><strong>Individualized Family Planning</strong></td>
+<td data-lang="awarenessRow6">Personal goals increasingly take priority over fertility.</td>
+</tr>
+
+<tr>
+<td><strong>2.0</strong></td>
+<td data-lang="awarenessStage7"><strong>Post-Traditional Reproductive Model</strong></td>
+<td data-lang="awarenessRow7">Parenthood becomes one possible life choice rather than a universal expectation.</td>
+</tr>
+
+<tr>
+<td><strong>1.5</strong></td>
+<td data-lang="awarenessStage8"><strong>Post-Family Model</strong></td>
+<td data-lang="awarenessRow8">Family loses its central social role; voluntary childlessness becomes increasingly common.</td>
+</tr>
+
+<tr>
+<td><strong>1.0</strong></td>
+<td data-lang="awarenessStage9"><strong>Complete Individualization</strong></td>
+<td data-lang="awarenessRow9">Reproductive decisions are almost entirely individualized, resulting in very low natural reproduction.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+   <!-- 4. C — Fertility Control -->
+<div class="indicator-card">
+
+<h3>
+<span>⚕️</span>
+<span data-lang="fertilityControlTitle">
+4. C — Fertility Control
+</span>
+</h3>
+
+<div class="definition-text">
+
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="fertilityControlDefinition">
+Represents the availability and effectiveness of fertility regulation and family planning systems.
+</span>
+
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="score">
+Score
+</th>
+
+<th data-lang="interpretation">
+Interpretation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>0</strong></td>
+<td data-lang="fertilityControlRow1">
+No Fertility Control
+</td>
+</tr>
+
+<tr>
+<td><strong>1</strong></td>
+<td data-lang="fertilityControlRow2">
+Very Limited Control
+</td>
+</tr>
+
+<tr>
+<td><strong>2</strong></td>
+<td data-lang="fertilityControlRow3">
+Limited Control
+</td>
+</tr>
+
+<tr>
+<td><strong>3</strong></td>
+<td data-lang="fertilityControlRow4">
+Moderate Control
+</td>
+</tr>
+
+<tr>
+<td><strong>4</strong></td>
+<td data-lang="fertilityControlRow5">
+High Control
+</td>
+</tr>
+
+<tr>
+<td><strong>5</strong></td>
+<td data-lang="fertilityControlRow6">
+Very High Control
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+   <!-- 5. WE — Women Education -->
+<div class="indicator-card">
+
+<h3>
+<span>🎓</span>
+<span data-lang="womenEducationTitle">
+5. WE — Women Education
+</span>
+</h3>
+
+<div class="definition-text">
+
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="womenEducationDefinition">
+Represents women's educational attainment, educational accessibility, and integration into the knowledge economy.
+</span>
+
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="score">
+Score
+</th>
+
+<th data-lang="stage">
+Stage
+</th>
+
+<th data-lang="interpretation">
+Interpretation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>0.5</strong></td>
+<td data-lang="womenEduStage1"><strong>Formation of Female Literacy</strong></td>
+<td data-lang="womenEduRow1">Female education is at an early stage; literacy remains limited.</td>
+</tr>
+
+<tr>
+<td><strong>1.0</strong></td>
+<td data-lang="womenEduStage2"><strong>Mass Primary Education</strong></td>
+<td data-lang="womenEduRow2">Primary education becomes widely available for girls.</td>
+</tr>
+
+<tr>
+<td><strong>1.5</strong></td>
+<td data-lang="womenEduStage3"><strong>Expansion of Secondary Education</strong></td>
+<td data-lang="womenEduRow3">Secondary education expands rapidly among women.</td>
+</tr>
+
+<tr>
+<td><strong>2.0</strong></td>
+<td data-lang="womenEduStage4"><strong>Universal Basic Education</strong></td>
+<td data-lang="womenEduRow4">Secondary education becomes the social norm.</td>
+</tr>
+
+<tr>
+<td><strong>2.5</strong></td>
+<td data-lang="womenEduStage5"><strong>Mass Higher Education</strong></td>
+<td data-lang="womenEduRow5">Higher education becomes accessible to a significant share of women.</td>
+</tr>
+
+<tr>
+<td><strong>3.0</strong></td>
+<td data-lang="womenEduStage6"><strong>Educational Modernization</strong></td>
+<td data-lang="womenEduRow6">Universities expand, educational quality improves, and female participation increases.</td>
+</tr>
+
+<tr>
+<td><strong>3.5</strong></td>
+<td data-lang="womenEduStage7"><strong>Global Educational Integration</strong></td>
+<td data-lang="womenEduRow7">Education aligns with international standards and academic mobility expands.</td>
+</tr>
+
+<tr>
+<td><strong>4.0</strong></td>
+<td data-lang="womenEduStage8"><strong>Digital Education Society</strong></td>
+<td data-lang="womenEduRow8">Digital technologies become an integral part of education.</td>
+</tr>
+
+<tr>
+<td><strong>4.5</strong></td>
+<td data-lang="womenEduStage9"><strong>Lifelong Learning Society</strong></td>
+<td data-lang="womenEduRow9">Continuous education and regular professional development become common practice.</td>
+</tr>
+
+<tr>
+<td><strong>5.0</strong></td>
+<td data-lang="womenEduStage10"><strong>Post-Industrial Educational Model</strong></td>
+<td data-lang="womenEduRow10">(Theoretical Maximum) Nearly universal access to advanced and lifelong education.</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+<!-- 6. U — Urbanization -->
+<div class="indicator-card">
+
+<h3>
+<span>🏙️</span>
+<span data-lang="urbanizationTitle">
+6. U — Urbanization
+</span>
+</h3>
+
+<div class="definition-text">
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="urbanizationDefinition">
+Represents the degree of urbanization and the transition from rural to urban demographic structures.
+</span>
+
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="urbanPopulationShare">
+Urban Population Share
+</th>
+
+<th data-lang="urbanizationScore">
+Score (U)
+</th>
+
+<th data-lang="interpretation">
+Interpretation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr><td>0–10%</td><td><strong>0.00</strong></td><td data-lang="urbanRow1">Predominantly Rural Society</td></tr>
+<tr><td>11–15%</td><td><strong>0.25</strong></td><td data-lang="urbanRow2">Early Rural Transition</td></tr>
+<tr><td>16–20%</td><td><strong>0.50</strong></td><td data-lang="urbanRow3">Low Urbanization</td></tr>
+<tr><td>21–25%</td><td><strong>0.75</strong></td><td data-lang="urbanRow4">Emerging Urbanization</td></tr>
+<tr><td>26–30%</td><td><strong>1.00</strong></td><td data-lang="urbanRow5">Initial Urban Development</td></tr>
+<tr><td>31–35%</td><td><strong>1.25</strong></td><td data-lang="urbanRow6">Expanding Urban Population</td></tr>
+<tr><td>36–40%</td><td><strong>1.50</strong></td><td data-lang="urbanRow7">Moderate Urbanization</td></tr>
+<tr><td>41–45%</td><td><strong>1.75</strong></td><td data-lang="urbanRow8">Balanced Rural–Urban Structure</td></tr>
+<tr><td>46–50%</td><td><strong>2.00</strong></td><td data-lang="urbanRow9">Half Urbanized Society</td></tr>
+<tr><td>51–55%</td><td><strong>2.25</strong></td><td data-lang="urbanRow10">Urban Majority Begins</td></tr>
+<tr><td>56–60%</td><td><strong>2.50</strong></td><td data-lang="urbanRow11">Growing Urban Society</td></tr>
+<tr><td>61–65%</td><td><strong>3.00</strong></td><td data-lang="urbanRow12">Highly Urbanized</td></tr>
+<tr><td>66–70%</td><td><strong>3.25</strong></td><td data-lang="urbanRow13">Advanced Urban Society</td></tr>
+<tr><td>71–75%</td><td><strong>3.50</strong></td><td data-lang="urbanRow14">Strong Urban Concentration</td></tr>
+<tr><td>76–80%</td><td><strong>3.75</strong></td><td data-lang="urbanRow15">Metropolitan Development</td></tr>
+<tr><td>81–85%</td><td><strong>4.00</strong></td><td data-lang="urbanRow16">Highly Metropolitan Society</td></tr>
+<tr><td>86–90%</td><td><strong>4.25</strong></td><td data-lang="urbanRow17">Advanced Metropolitan Society</td></tr>
+<tr><td>91–95%</td><td><strong>4.50</strong></td><td data-lang="urbanRow18">Near-Complete Urbanization</td></tr>
+<tr><td>96–100%</td><td><strong>5.00</strong></td><td data-lang="urbanRow19">Fully Urbanized Society</td></tr>
+
+</tbody>
+
+</table>
+
+</div>
+    <!-- 7. O — Outer Influence -->
+<div class="indicator-card">
+
+<h3>
+<span>🌍</span>
+<span data-lang="outerInfluenceTitle">
+7. O — Outer Influence
+</span>
+</h3>
+
+<div class="definition-text">
+
+<span class="definition-label" data-lang="definitionLabel">
+Definition:
+</span>
+
+<span data-lang="outerInfluenceDefinition">
+Represents temporary external events affecting the demographic system without changing its internal structure.
+</span>
+
+</div>
+
+<table class="methodology-table">
+
+<thead>
+
+<tr>
+
+<th data-lang="score">
+Score
+</th>
+
+<th data-lang="interpretation">
+Interpretation
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td><strong>1.20</strong></td>
+<td data-lang="outerRow1">
+Major Positive Impulse
+</td>
+</tr>
+
+<tr>
+<td><strong>1.10</strong></td>
+<td data-lang="outerRow2">
+Positive Event
+</td>
+</tr>
+
+<tr>
+<td><strong>1.00</strong></td>
+<td data-lang="outerRow3">
+Normal Conditions
+</td>
+</tr>
+
+<tr>
+<td><strong>0.90</strong></td>
+<td data-lang="outerRow4">
+Political or Economic Instability
+</td>
+</tr>
+
+<tr>
+<td><strong>0.80</strong></td>
+<td data-lang="outerRow5">
+Systemic Crisis
+</td>
+</tr>
+
+<tr>
+<td><strong>0.50</strong></td>
+<td data-lang="outerRow6">
+Total Catastrophe
+</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+\<!-- КОНЕЦ ОБНОВЛЕННОГО РАЗДЕЛА VARIABLES MATRIX -->
+</div>
+</section>
+
+<section id="models" class="timeline-section" style="padding:80px 0;background:#ffffff;">
+
+<div class="calc-container">
+
+<div style="text-align:center;margin-bottom:50px;">
+
+<span class="hero-badge" data-lang="methodologyBadge">
+METHODOLOGY
+</span>
+
+<h2 style="font-size:32px;font-weight:800;color:#0f172a;margin-top:10px;"
+data-lang="mathEvolutionTitle">
+Mathematical Evolution
+</h2>
+
+<p style="color:#64748b;font-size:16px;max-width:600px;margin:10px auto 0 auto;"
+data-lang="mathEvolutionDesc">
+Click on any historical period to explore the underlying formulas and the demographic rationale behind them.
+</p>
+
+</div>
+
+<div class="timeline-container">
+
+<div class="timeline-line"></div>
+
+<!-- MODEL I -->
+
+<div class="timeline-item">
+
+<div class="timeline-badge">1920</div>
+
+<div class="timeline-card" onclick="toggleTimelineItem(this)">
+
+<div class="timeline-card-header">
+
+<h3 data-lang="model1Title">
+Model I (1920–1954)
+</h3>
+
+<span class="timeline-icon">▼</span>
+
+</div>
+
+<div class="timeline-card-content">
+
+<div class="formula-box">
+D = [ ((S + T + A) / 3) / (1 + (C + WE + U)) ] × O
+</div>
+
+<h4 data-lang="whyModelTitle">
+Why is this model used?
+</h4>
+
+<p data-lang="model1Desc">
+This model represents the early demographic transition, when mortality and traditional fertility were the dominant forces shaping population growth. During this period, fertility control, women's education, and urbanization were still limited, so these factors had only a moderate influence on demographic behaviour. Therefore, the model emphasizes the average contribution of the three core demographic drivers (Survivance, Tradition, and Awareness) while treating limiting factors as secondary influences.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MODEL II -->
+
+<div class="timeline-item">
+
+<div class="timeline-badge">1955</div>
+
+<div class="timeline-card" onclick="toggleTimelineItem(this)">
+
+<div class="timeline-card-header">
+
+<h3 data-lang="model2Title">
+Model II (1955–2007)
+</h3>
+
+<span class="timeline-icon">▼</span>
+
+</div>
+
+<div class="timeline-card-content">
+
+<div class="formula-box">
+D = [ (S + T + A) / (C + WE + U) ] × O
+</div>
+
+<h4 data-lang="whyModelTitle">
+Why is this model used?
+</h4>
+
+<p data-lang="model2Desc">
+This model reflects the middle stage of the demographic transition. Rapid urbanization, expansion of women's education, and widespread access to family planning significantly changed reproductive behaviour. These limiting factors became almost as influential as traditional fertility itself. Consequently, the denominator directly incorporates these structural constraints, making the model more sensitive to modernization processes.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MODEL III -->
+
+<div class="timeline-item">
+
+<div class="timeline-badge">2008</div>
+
+<div class="timeline-card" onclick="toggleTimelineItem(this)">
+
+<div class="timeline-card-header">
+
+<h3 data-lang="model3Title">
+Model III (2008–2026)
+</h3>
+
+<span class="timeline-icon">▼</span>
+
+</div>
+
+<div class="timeline-card-content">
+
+<div class="formula-box">
+D = [ (S + T + A) / (1 + ((C + WE + U) / 3)) ] × O
+</div>
+
+<h4 data-lang="whyModelTitle">
+Why is this model used?
+</h4>
+
+<p data-lang="model3Desc">
+This model represents the modern demographic stage, where most structural transitions have already occurred. Fertility control, education, and urbanization remain important, but their influence has become more stable rather than continuously increasing. Dividing the limiting factors by three reduces their dominance and produces a more balanced assessment of demographic potential under contemporary conditions.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="timeline-item-end">
+<div class="timeline-badge-end"></div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="calculator" class="main-calculator-section">
+    <div class="calc-container">
+
+        <span class="section-badge"
+              style="display:block;text-align:center;"
+              data-lang="calculatorBadge">
+            Analytical Engine
+        </span>
+
+        <h2 class="section-title"
+            style="text-align:center;margin-bottom:12px;"
+            data-lang="calculatorTitle">
+            DPI Interactive Calculator
+        </h2>
+
+        <p style="text-align:center;color:var(--text-muted);max-width:600px;margin:0 auto 48px auto;font-size:15px;"
+           data-lang="calculatorDescription">
+            Select a historical period to automatically load its dedicated mathematical model, configure the 7 parameters, and execute the simulation.
+        </p>
+
+        <div class="period-selector-card">
+
+            <label for="main-period"
+                   data-lang="calculatorSelectPeriod">
+                Select Historical Period & Model Track
+            </label>
+
+            <select id="main-period" onchange="handlePeriodChange()">
+
+                <option value="1920-1954" data-lang="periodModel1">
+                    1920–1954 (Model I: Early Transition)
+                </option>
+
+                <option value="1955-2007" data-lang="periodModel2">
+                    1955–2007 (Model II: Industrial Acceleration)
+                </option>
+
+                <option value="2008-2026"
+                        selected
+                        data-lang="periodModel3">
+                    2008–2026 (Model III: Modern Equilibrium)
+                </option>
+
+            </select>
+
+            <div id="active-model-formula"
+                 class="active-formula-banner">
+
+                <span data-lang="activeModel">
+                    Active Model:
+                </span>
+
+                <span>
+                    D = ((S + T + A) / (1 + ((C + WE + U) / 3))) × O
+                </span>
+
+            </div>
+
+        </div>
+
+        <div class="calc-grid">
+
+            <!-- S -->
+
+            <div class="calc-card">
+
+                <div class="calc-card-header">
+
+                    <span class="calc-icon">🛡️</span>
+
+                    <div>
+                        <h4 data-lang="calcSTitle">
+                            S — Survivance
+                        </h4>
+
+                        <p data-lang="calcSSubtitle">
+                            Mortality conditions
+                        </p>
+                    </div>
+
+                    <button class="info-btn"
+                            onclick="openModal('S')">ⓘ</button>
+
+                </div>
+
+                <select id="input-s" class="calc-dropdown">
+
+                    <option value=""
+                            disabled
+                            selected
+                            data-lang="selectValue">
+                        Select value...
+                    </option>
+
+                    <option value="1" data-lang="calcS1">
+                        1 — Very high mortality
+                    </option>
+
+                    <option value="2" data-lang="calcS2">
+                        2 — High mortality
+                    </option>
+
+                    <option value="3" data-lang="calcS3">
+                        3 — Moderate mortality
+                    </option>
+
+                    <option value="4" data-lang="calcS4">
+                        4 — Low mortality
+                    </option>
+
+                    <option value="5" data-lang="calcS5">
+                        5 — Very low mortality
+                    </option>
+
+                </select>
+
+            </div>
+
+            <!-- T -->
+
+            <div class="calc-card">
+
+                <div class="calc-card-header">
+
+                    <span class="calc-icon">👨‍👩‍👧</span>
+
+                    <div>
+
+                        <h4 data-lang="calcTTitle">
+                            T — Tradition
+                        </h4>
+
+                        <p data-lang="calcTSubtitle">
+                            Traditional fertility (TFR)
+                        </p>
+
+                    </div>
+
+                    <button class="info-btn"
+                            onclick="openModal('T')">ⓘ</button>
+
+                </div>
+
+                <select id="input-t" class="calc-dropdown">
+
+                    <option value=""
+                            disabled
+                            selected
+                            data-lang="selectValue">
+                        Select value...
+                    </option>
+
+                    <option value="1.0" data-lang="calcT1">1.0 — Very weak tradition</option>
+                    <option value="1.5" data-lang="calcT2">1.5 — Very low</option>
+                    <option value="2.0" data-lang="calcT3">2.0 — Low</option>
+                    <option value="2.5" data-lang="calcT4">2.5 — Below average</option>
+                    <option value="3.0" data-lang="calcT5">3.0 — Moderate</option>
+                    <option value="3.5" data-lang="calcT6">3.5 — Moderately high</option>
+                    <option value="4.0" data-lang="calcT7">4.0 — High</option>
+                    <option value="4.5" data-lang="calcT8">4.5 — Very high</option>
+                    <option value="5.0" data-lang="calcT9">5.0 — Extremely high fertility</option>
+
+                </select>
+
+            </div>
+
+            <!-- A -->
+
+            <div class="calc-card">
+
+                <div class="calc-card-header">
+
+                    <span class="calc-icon">🧠</span>
+
+                    <div>
+
+                        <h4 data-lang="calcATitle">
+                            A — Awareness
+                        </h4>
+
+                        <p data-lang="calcASubtitle">
+                            Reproductive awareness
+                        </p>
+
+                    </div>
+
+                    <button class="info-btn"
+                            onclick="openModal('A')">ⓘ</button>
+
+                </div>
+
+                <select id="input-a" class="calc-dropdown">
+
+                    <option value=""
+                            disabled
+                            selected
+                            data-lang="selectValue">
+                        Select value...
+                    </option>
+
+                    <option value="1.00" data-lang="calcA1">1.00 — Minimal awareness</option>
+                    <option value="1.50" data-lang="calcA2">1.50 — Near Minimal</option>
+                    <option value="2.00" data-lang="calcA3">2.00 — Low</option>
+                    <option value="2.50" data-lang="calcA4">2.50 — Moderate-Low</option>
+                    <option value="3.00" data-lang="calcA5">3.00 — Moderate</option>
+                    <option value="3.25" data-lang="calcA6">3.25 — Moderate–High</option>
+                    <option value="3.50" data-lang="calcA7">3.50 — High</option>
+                    <option value="3.75" data-lang="calcA8">3.75 — High–Very High</option>
+                    <option value="4.00" data-lang="calcA9">4.00 — Very High</option>
+                    <option value="4.25" data-lang="calcA10">4.25 — Advanced</option>
+                    <option value="4.50" data-lang="calcA11">4.50 — Highly Advanced</option>
+                    <option value="4.75" data-lang="calcA12">4.75 — Near Maximum</option>
+                    <option value="5.00" data-lang="calcA13">5.00 — Maximum awareness</option>
+
+                </select>
+
+            </div>
+<!-- C -->
+
+<div class="calc-card">
+    <div class="calc-card-header">
+        <span class="calc-icon">⚕️</span>
+
+        <div>
+            <h4 data-lang="calcCTitle">C — Control</h4>
+            <p data-lang="calcCSubtitle">Fertility control access</p>
+        </div>
+
+        <button class="info-btn" onclick="openModal('C')">ⓘ</button>
+    </div>
+
+    <select id="input-c" class="calc-dropdown">
+        <option value="" disabled selected data-lang="selectValue">Select value...</option>
+
+        <option value="0" data-lang="calcC1">0 — No fertility control</option>
+        <option value="1" data-lang="calcC2">1 — Very limited</option>
+        <option value="2" data-lang="calcC3">2 — Limited</option>
+        <option value="3" data-lang="calcC4">3 — Moderate</option>
+        <option value="4" data-lang="calcC5">4 — High</option>
+        <option value="5" data-lang="calcC6">5 — Very high control</option>
+    </select>
+</div>
+
+
+<!-- WE -->
+
+<div class="calc-card">
+    <div class="calc-card-header">
+        <span class="calc-icon">🎓</span>
+
+        <div>
+            <h4 data-lang="calcWETitle">WE — Women Education</h4>
+            <p data-lang="calcWESubtitle">Literacy & employment</p>
+        </div>
+
+        <button class="info-btn" onclick="openModal('WE')">ⓘ</button>
+    </div>
+
+    <select id="input-we" class="calc-dropdown">
+        <option value="" disabled selected data-lang="selectValue">Select value...</option>
+
+        <option value="0.5" data-lang="calcWE1"></option>
+        <option value="1.0" data-lang="calcWE2"></option>
+        <option value="1.5" data-lang="calcWE3"></option>
+        <option value="2.0" data-lang="calcWE4"></option>
+        <option value="2.5" data-lang="calcWE5"></option>
+        <option value="3.0" data-lang="calcWE6"></option>
+        <option value="3.5" data-lang="calcWE7"></option>
+        <option value="4.0" data-lang="calcWE8"></option>
+        <option value="4.5" data-lang="calcWE9"></option>
+        <option value="5.0" data-lang="calcWE10"></option>
+    </select>
+</div>
+
+
+<!-- U -->
+
+<div class="calc-card">
+    <div class="calc-card-header">
+        <span class="calc-icon">🏙️</span>
+
+        <div>
+            <h4 data-lang="calcUTitle">U — Urbanization</h4>
+            <p data-lang="calcUSubtitle">Urban population share</p>
+        </div>
+
+        <button class="info-btn" onclick="openModal('U')">ⓘ</button>
+    </div>
+
+    <select id="input-u" class="calc-dropdown">
+        <option value="" disabled selected data-lang="selectValue">Select value...</option>
+
+        <option value="0.00" data-lang="calcU1"></option>
+        <option value="0.25" data-lang="calcU2"></option>
+        <option value="0.50" data-lang="calcU3"></option>
+        <option value="0.75" data-lang="calcU4"></option>
+        <option value="1.00" data-lang="calcU5"></option>
+        <option value="1.25" data-lang="calcU6"></option>
+        <option value="1.50" data-lang="calcU7"></option>
+        <option value="1.75" data-lang="calcU8"></option>
+        <option value="2.00" data-lang="calcU9"></option>
+        <option value="2.25" data-lang="calcU10"></option>
+        <option value="2.50" data-lang="calcU11"></option>
+        <option value="3.00" data-lang="calcU12"></option>
+        <option value="3.25" data-lang="calcU13"></option>
+        <option value="3.50" data-lang="calcU14"></option>
+        <option value="3.75" data-lang="calcU15"></option>
+        <option value="4.00" data-lang="calcU16"></option>
+        <option value="4.25" data-lang="calcU17"></option>
+        <option value="4.50" data-lang="calcU18"></option>
+        <option value="5.00" data-lang="calcU19"></option>
+    </select>
+</div>
+
+
+<!-- O -->
+
+<div class="calc-card full-width-calc-card">
+    <div class="calc-card-header">
+        <span class="calc-icon">🌍</span>
+
+        <div>
+            <h4 data-lang="calcOTitle">O — Outer Influence</h4>
+            <p data-lang="calcOSubtitle">External shocks, crises, or major structural reforms</p>
+        </div>
+
+        <button class="info-btn" onclick="openModal('O')">ⓘ</button>
+    </div>
+
+    <select id="input-o" class="calc-dropdown">
+        <option value="" disabled selected data-lang="selectCondition">Select system condition...</option>
+
+        <option value="1.20" data-lang="calcO1"></option>
+        <option value="1.10" data-lang="calcO2"></option>
+        <option value="1.00" data-lang="calcO3"></option>
+        <option value="0.90" data-lang="calcO4"></option>
+        <option value="0.80" data-lang="calcO5"></option>
+        <option value="0.50" data-lang="calcO6"></option>
+    </select>
+</div>
+
+            </div>
+
+           <div class="calc-actions">
+
+    <button class="btn btn-primary"
+            onclick="executeCalculation()"
+            data-lang="calculateButton">
+        Calculate Index
+    </button>
+
+    <button class="btn btn-secondary"
+            onclick="resetCalculator()"
+            data-lang="resetButton">
+        Reset fields
+    </button>
+
+</div>
+
+<div id="calc-error"
+     class="calc-error-banner"
+     style="display:none;"
+     data-lang="calcError">
+
+    Please complete all required fields.
+
+</div>
+
+<div id="result-card"
+     class="result-card"
+     style="display:none;margin-top:30px;background:#ffffff;border:1px solid #e2e8f0;border-radius:12px;padding:24px;box-shadow:0 4px 6px rgba(0,0,0,0.05);">
+
+    <div class="result-grid"
+         style="display:flex;flex-direction:column;gap:16px;">
+
+        <div class="result-main-score"
+             style="border-bottom:1px solid #e2e8f0;padding-bottom:12px;">
+
+            <span class="res-badge"
+                  style="font-size:12px;text-transform:uppercase;color:#64748b;font-weight:700;"
+                  data-lang="resultOutput">
+
+                Calculated DPI Output
+
+            </span>
+
+            <div id="res-d-score"
+                 class="big-d-value"
+                 style="font-size:44px;font-weight:800;margin:6px 0;color:#0f172a;">
+
+                D = 0.00
+
+            </div>
+
+            <div id="res-level"
+                 class="level-badge"
+                 style="display:inline-block;padding:4px 12px;border-radius:100px;font-weight:700;font-size:13px;background-color:#64748b;color:#ffffff;">
+
+                -
+
+            </div>
+
+            <p id="res-interpretation"
+               style="margin-top:15px;font-size:0.9em;color:#444;font-weight:500;font-style:italic;">
+            </p>
+
+        </div>
+
+        <div class="result-meta-details">
+
+            <h4 style="font-size:15px;font-weight:700;margin:0 0 10px 0;color:#0f172a;"
+                data-lang="simulationSummary">
+
+                Simulation Summary
+
+            </h4>
+
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:#334155;">
+
+                <li>
+                    <strong data-lang="selectedPeriod">
+                        Selected Period:
+                    </strong>
+
+                    <span id="res-period"
+                          style="color:#0f172a;font-weight:600;">
+                        -
+                    </span>
+                </li>
+
+                <li>
+
+                    <strong data-lang="formulaApplied">
+                        Formula Applied:
+                    </strong>
+
+                    <span id="res-formula"
+                          style="font-family:monospace;background:#f1f5f9;padding:2px 6px;border-radius:4px;font-weight:600;">
+                        -
+                    </span>
+
+                </li>
+
+                <li>
+
+                    <strong data-lang="inputVector">
+                        Input Vector:
+                    </strong>
+
+                    <span id="res-vector"
+                          style="font-family:monospace;background:#f1f5f9;padding:2px 6px;border-radius:4px;color:#64748b;">
+                        -
+                    </span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="result-util-buttons"
+             style="margin-top:10px;">
+
+            <button class="util-btn"
+                    onclick="copyResultToClipboard()"
+                    data-lang="copyResult"
+                    style="padding:8px 16px;background:#ffffff;border:1px solid #cbd5e1;border-radius:6px;cursor:pointer;font-weight:600;font-size:13px;color:#334155;">
+
+                Copy Result
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</section>
+    <script>
+        const modalDatabase = {
+            S: { title: "S — Survivance", definition: "Represents mortality conditions.", purpose: "Establishes baseline health stability.", effect: "Additive component in numerator." },
+            T: { title: "T — Tradition", definition: "Represents traditional fertility behavior (TFR).", purpose: "Captures cultural defaults.", effect: "Drives weight upward in numerator." },
+            A: { title: "A — Awareness", definition: "Represents reproductive awareness.", purpose: "Integrates family planning choices.", effect: "Balance tracker along with cultural weights." },
+            C: { title: "C — Fertility Control", definition: "Represents contraception access.", purpose: "Tracks systemic restrictions.", effect: "Adds value to denominator, pushing index down." },
+            WE: { title: "WE — Women Education", definition: "Represents women's literacy and employment.", purpose: "Captures macro social status transformations.", effect: "Creates division pressure inside denominator." },
+            U: { title: "U — Urbanization", definition: "Represents urban density shifts.", purpose: "Measures spatial configuration limits.", effect: "Contributes dampening weights to divisor." },
+            O: { title: "O — Outer Influence", definition: "Represents major external events or shocks.", purpose: "Applies immediate environmental systems corrections.", effect: "Final system multiplier applied to results." }
+        };
+
+        function handlePeriodChange() {
+            const periodEl = document.getElementById('main-period');
+            const banner = document.querySelector('#active-model-formula span');
+            if (!periodEl || !banner) return;
+            
+            const period = periodEl.value;
+            if (period === '1920-1954') {
+                banner.innerText = "D = (((S + T + A) / 3) / (1 + (C + WE + U))) × O";
+            } else if (period === '1955-2007') {
+                banner.innerText = "D = ((S + T + A) / (C + WE + U)) × O";
+            } else {
+                banner.innerText = "D = ((S + T + A) / (1 + ((C + WE + U) / 3))) × O";
+            }
+        }
+
+        function openModal(coefId) {
+            const data = modalDatabase[coefId];
+            if(!data) return;
+            document.getElementById('modal-title').innerText = data.title;
+            document.getElementById('modal-definition').innerText = data.definition;
+            document.getElementById('modal-purpose').innerText = data.purpose;
+            document.getElementById('modal-effect').innerText = data.effect;
+            document.getElementById('info-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('info-modal').style.display = 'none';
+        }
+
+        function resetCalculator() {
+            ['s','t','a','c','we','u','o'].forEach(id => {
+                const el = document.getElementById(`input-${id}`);
+                if(el) el.value = "";
+            });
+            const rc = document.getElementById('result-card');
+            const err = document.getElementById('calc-error');
+            if(rc) rc.style.display = 'none';
+            if(err) err.style.display = 'none';
+        }
+
+        function executeCalculation() {
+            const errorBanner = document.getElementById('calc-error');
+            const resultCard = document.getElementById('result-card');
+            
+            if (!errorBanner) {
+                alert("CRITICAL ERROR: HTML element with ID 'calc-error' is missing!");
+                return;
+            }
+
+            try {
+                // Массив для проверки существования полей ввода
+                const inputs = ['s', 't', 'a', 'c', 'we', 'u', 'o'];
+                for (let id of inputs) {
+                    if (!document.getElementById(`input-${id}`)) {
+                        errorBanner.style.display = 'block';
+                        errorBanner.innerText = `ERROR: Dropdown input field 'input-${id}' is missing in HTML!`;
+                        return;
+                    }
+                }
+
+                // Собираем значения
+                const s = parseFloat(document.getElementById('input-s').value);
+                const t = parseFloat(document.getElementById('input-t').value);
+                const a = parseFloat(document.getElementById('input-a').value);
+                const c = parseFloat(document.getElementById('input-c').value);
+                const we = parseFloat(document.getElementById('input-we').value);
+                const u = parseFloat(document.getElementById('input-u').value);
+                const o = parseFloat(document.getElementById('input-o').value);
+
+                // Проверяем заполненность
+                if (isNaN(s) || isNaN(t) || isNaN(a) || isNaN(c) || isNaN(we) || isNaN(u) || isNaN(o)) {
+                    errorBanner.style.display = 'block';
+                    errorBanner.innerText = "Please select values for ALL 7 parameters before calculating.";
+                    if(resultCard) resultCard.style.display = 'none';
+                    return;
+                }
+                
+                errorBanner.style.display = 'none';
+
+                const periodEl = document.getElementById('main-period');
+                const period = periodEl ? periodEl.value : '2008-2026';
+                let D = 0;
+
+                if (period === '1920-1954') {
+                    D = (((s + t + a) / 3) / (1 + (c + we + u))) * o;
+                } else if (period === '1955-2007') {
+                    const denominator = c + we + u;
+                    D = denominator === 0 ? 0 : ((s + t + a) / denominator) * o;
+                } else {
+                    D = ((s + t + a) / (1 + ((c + we + u) / 3))) * o;
+                }
+
+                const finalD = D.toFixed(2);
+
+                let level = "";
+                let backgroundColor = "#64748b"; 
+                let interpretation = "";
+
+               if (D >= 3.00) { 
+    level = "Very High"; backgroundColor = "#10b981"; 
+    interpretation = "Strong demographic potential with highly favorable conditions for population reproduction."; 
+} 
+else if (D >= 2.30) { 
+    level = "High"; backgroundColor = "#22c55e"; 
+    interpretation = "Stable demographic potential with generally favorable reproduction conditions."; 
+} 
+else if (D >= 1.60) { 
+    level = "Moderate"; backgroundColor = "#f59e0b"; 
+    interpretation = "Balanced demographic potential with both supportive and limiting factors."; 
+} 
+else if (D >= 1.00) { 
+    level = "Low"; backgroundColor = "#ef4444"; 
+    interpretation = "Limited demographic potential due to the growing influence of restrictive factors."; 
+} 
+else { 
+    level = "Critical"; backgroundColor = "#991b1b"; 
+    interpretation = "Severely weakened demographic potential under adverse demographic conditions."; 
+}
+                // Проверяем элементы вывода
+                const outputs = ['res-d-score', 'res-level', 'res-period', 'res-formula', 'res-vector', 'result-card', 'res-interpretation'];
+                for (let id of outputs) {
+                    if (!document.getElementById(id)) {
+                        errorBanner.style.display = 'block';
+                        errorBanner.innerText = `ERROR: Output container '${id}' is missing in HTML!`;
+                        return;
+                    }
+                }
+
+                document.getElementById('res-d-score').innerText = `D = ${finalD}`;
+                document.getElementById('res-level').innerText = level;
+                document.getElementById('res-level').style.backgroundColor = backgroundColor;
+                document.getElementById('res-level').style.color = "#ffffff";
+                document.getElementById('res-period').innerText = period;
+                document.getElementById('res-interpretation').innerText = interpretation;
+                
+                let modelName = "Model III (2008–2026)";
+                if (period === '1920-1954') modelName = "Model I (1920–1954)";
+                if (period === '1955-2007') modelName = "Model II (1955–2007)";
+                document.getElementById('res-formula').innerText = modelName;
+                
+                document.getElementById('res-vector').innerText = `S=${s}, T=${t}, A=${a}, C=${c}, WE=${we}, U=${u}, O=${o}`;
+                
+                document.getElementById('result-card').style.display = 'block';
+
+            } catch (err) {
+                errorBanner.style.display = 'block';
+                errorBanner.innerText = "Runtime Error: " + err.message;
+            }
+        }
+
+        function copyResultToClipboard() {
+            const scoreEl = document.getElementById('res-d-score');
+            const periodEl = document.getElementById('res-period');
+            const vectorEl = document.getElementById('res-vector');
+            if(!scoreEl || !periodEl || !vectorEl) return;
+            
+            const text = `DPI Output:\n${scoreEl.innerText}\nPeriod: ${periodEl.innerText}\nVector: ${vectorEl.innerText}`;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Result copied to clipboard!');
+            });
+        }
+    </script>
+    </p>
+</div>
+<section id="limitations" style="max-width: 800px; margin: 40px auto; padding: 20px; font-size: 0.9em; color: #777;">
+
+    <h4 style="color: #333;" data-lang="limitationsTitle">
+        Model Limitations
+    </h4>
+
+    <p data-lang="limitationsText">
+        This model is designed for historical analysis of Kazakhstan. It relies on expert qualitative assessments and does not account for sudden external shocks (e.g., climate or migration crises) unless explicitly modeled. It serves as a complementary analytical tool, not an official forecast.
+    </p>
+
+</section>
+
+<section id="assumptions" style="padding:40px; max-width:800px; margin:0 auto; text-align:left;">
+
+    <h2 data-lang="assumptionsTitle">
+        Mathematical Assumptions
+    </h2>
+
+    <ul style="list-style-type:none; padding:0;">
+
+        <li style="margin-bottom:10px;" data-lang="assumption1">
+            <strong>Assumption 1:</strong> All coefficients are normalized to a common numerical scale before being incorporated into the model.
+        </li>
+
+        <li style="margin-bottom:10px;" data-lang="assumption2">
+            <strong>Assumption 2:</strong> The coefficient O modifies only the final result because external shocks influence the demographic system as a whole rather than individual components.
+        </li>
+
+        <li style="margin-bottom:10px;" data-lang="assumption3">
+            <strong>Assumption 3:</strong> Historical periods require different mathematical models because the determinants of demographic development changed substantially throughout the twentieth century.
+        </li>
+
+        <li style="margin-bottom:10px;" data-lang="assumption4">
+            <strong>Assumption 4:</strong> All coefficients are assumed to contribute independently to the final index.
+        </li>
+
+        <li style="margin-bottom:10px;" data-lang="assumption5">
+            <strong>Assumption 5:</strong> The index measures relative demographic potential rather than exact future population size.
+        </li>
+
+    </ul>
+
+</section>
+    <section id="about-author"
+         style="margin:60px auto;max-width:900px;padding:40px 30px;
+         border-top:1px solid #e2e8f0;text-align:center;">
+
+    <span class="section-badge"
+          data-lang="authorBadge">
+        AUTHOR
+    </span>
+
+    <h2 class="section-title"
+        style="margin-top:15px;"
+        data-lang="authorTitle">
+        About the Author
+    </h2>
+
+    <p style="color:#64748b;margin-bottom:35px;"
+       data-lang="authorDescription">
+        Creator and developer of the Demographic Potential Index (DPI).
+    </p>
+
+    <div style="font-size:1.25rem;font-weight:700;color:#0f172a;">
+        Rysbek Dinmukhammed
+    </div>
+
+    <div style="color:#64748b;margin:10px 0 35px;"
+         data-lang="authorPosition">
+        Independent Researcher | Kazakhstan
+    </div>
+
+    <h3 style="margin-bottom:18px;color:#1e293b;"
+        data-lang="researchInterests">
+        Research Interests
+    </h3>
+
+    <div style="
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+        gap:12px;
+        max-width:700px;
+        margin:0 auto;
+    ">
+
+        <div class="feature-card" data-lang="interest1">
+            Demographic Modeling
+        </div>
+
+        <div class="feature-card" data-lang="interest2">
+            Population Studies
+        </div>
+
+        <div class="feature-card" data-lang="interest3">
+            Mathematical Modeling
+        </div>
+
+        <div class="feature-card" data-lang="interest4">
+            Historical Demography
+        </div>
+
+        <div class="feature-card" data-lang="interest5">
+            Statistical Analysis
+        </div>
+
+        <div class="feature-card" data-lang="interest6">
+            Demographic Forecasting
+        </div>
+
+    </div>
+
+</section>
+<footer style="margin-top: 80px; padding: 40px 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; color: #64748b; font-size: 0.9em;">
+    <div style="max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; text-align: left;">
+        
+        <div>
+        <h4 style="color: #0f172a; margin-bottom: 15px;" data-lang="platformTitle">
+    Platform
+</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <a href="#" style="color: #64748b; text-decoration: none;" data-lang="home">
+    Home
+</a>
+               <a href="#calculator" class="hero-btn-primary" data-lang="startCalculator">
+    Start Calculator
+</a>
+
+<a href="#assumptions" class="learn-more-btn" data-lang="learnMore">
+    Learn More
+</a>
+            </div>
+        </div>
+
+        <div>
+          <h4 style="color: #0f172a; margin-bottom: 15px;" data-lang="resourcesTitle">
+    Resources
+</h4>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+               <a href="#" style="color: #64748b; text-decoration: none;" data-lang="researchPaper">
+    Research Paper (In progress)
+</a>
+               <a href="#" style="color: #64748b; text-decoration: none;" data-lang="dataset">
+    Historical Dataset
+</a>
+                <a href="#about-author" style="color: #64748b; text-decoration: none;" data-lang="aboutProject">
+    About Project
+</a>
+            </div>
+        </div>
+
+        <div>
+          <h4 style="color: #0f172a; margin-bottom: 15px;" data-lang="contactTitle">
+    Contact
+</h4>
+
+<div style="display: flex; flex-direction: column; gap: 8px;">
+    <a href="mailto:nelsontraff1805@gmail.com"
+       style="color: #64748b; text-decoration: none;">
+        <span data-lang="email">Email</span><br>
+        nelsontraff1805@gmail.com
+    </a>
+</div>
+
+</div>
+</div>
+
+<div style="text-align: center; margin-top: 40px; border-top: 1px solid #e2e8f0; padding-top: 20px;">
+    &copy; 2026 Rysbek Dinmukhammed.
+    <span data-lang="rightsReserved">All rights reserved.</span>
+</div>
+
+</footer>
+
+<script src="js/translations.js"></script>
+<script src="js/language.js"></script>
+</body>
+</html>
