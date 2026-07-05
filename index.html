@@ -1732,7 +1732,7 @@ This model represents the modern demographic stage, where most structural transi
                 // Проверяем заполненность
                 if (isNaN(s) || isNaN(t) || isNaN(a) || isNaN(c) || isNaN(we) || isNaN(u) || isNaN(o)) {
                     errorBanner.style.display = 'block';
-                    errorBanner.innerText = "Please select values for ALL 7 parameters before calculating.";
+                    errorBanner.innerText = translations[currentLang].calcSelectAll;
                     if(resultCard) resultCard.style.display = 'none';
                     return;
                 }

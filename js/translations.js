@@ -372,6 +372,10 @@ integrated: "Integrated",
 variablesCount: "7 Variables",
 erasCount: "3 Eras",
 kazakhstan: "Kazakhstan",
+calculateButton: "Calculate Index",
+resetButton: "Reset Fields",
+calcError: "Please complete all required fields.",
+calcSelectAll: "Please select values for all 7 parameters before calculating.",
 },
 
     ru: {
@@ -772,6 +776,10 @@ integrated: "Интегрировано",
 variablesCount: "7 показателей",
 erasCount: "3 эпохи",
 kazakhstan: "Казахстан",
+calculateButton: "Рассчитать индекс",
+resetButton: "Сбросить",
+calcError: "Пожалуйста, заполните все обязательные поля.",
+calcSelectAll: "Пожалуйста, выберите значения для всех 7 параметров перед расчётом.",
 },
 
     kk: {
@@ -1174,6 +1182,10 @@ integrated: "Біріктірілген",
 variablesCount: "7 көрсеткіш",
 erasCount: "3 кезең",
 kazakhstan: "Қазақстан",
+calculateButton: "Индексті есептеу",
+resetButton: "Тазарту",
+calcError: "Барлық міндетті өрістерді толтырыңыз.",
+calcSelectAll: "Есептеу алдында барлық 7 параметрдің мәндерін таңдаңыз.",
 }
 
 };

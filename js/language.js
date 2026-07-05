@@ -1,4 +1,8 @@
+let currentLang = "en";
+
 function setLanguage(lang) {
+
+    currentLang = lang;
 
     document.querySelectorAll("[data-lang]").forEach(element => {
 
