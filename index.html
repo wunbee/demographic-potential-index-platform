@@ -98,7 +98,9 @@
     <section id="hero" class="hero-section">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-badge">SCIENTIFIC PLATFORM</span>
+               <span class="hero-badge" data-lang="heroBadge">
+    SCIENTIFIC PLATFORM
+</span>
                 <h1 class="hero-title" data-lang="title">
     Demographic Potential Index
 </h1>
@@ -1758,25 +1760,32 @@ This model represents the modern demographic stage, where most structural transi
                 let backgroundColor = "#64748b"; 
                 let interpretation = "";
 
-               if (D >= 3.00) { 
-    level = "Very High"; backgroundColor = "#10b981"; 
-    interpretation = "Strong demographic potential with highly favorable conditions for population reproduction."; 
-} 
-else if (D >= 2.30) { 
-    level = "High"; backgroundColor = "#22c55e"; 
-    interpretation = "Stable demographic potential with generally favorable reproduction conditions."; 
-} 
-else if (D >= 1.60) { 
-    level = "Moderate"; backgroundColor = "#f59e0b"; 
-    interpretation = "Balanced demographic potential with both supportive and limiting factors."; 
-} 
-else if (D >= 1.00) { 
-    level = "Low"; backgroundColor = "#ef4444"; 
-    interpretation = "Limited demographic potential due to the growing influence of restrictive factors."; 
-} 
-else { 
-    level = "Critical"; backgroundColor = "#991b1b"; 
-    interpretation = "Severely weakened demographic potential under adverse demographic conditions."; 
+             const tr = translations[currentLang] || translations.en;
+
+if (D >= 3.00) {
+    level = tr.levelVeryHigh;
+    backgroundColor = "#10b981";
+    interpretation = tr.interpVeryHigh;
+}
+else if (D >= 2.30) {
+    level = tr.levelHigh;
+    backgroundColor = "#22c55e";
+    interpretation = tr.interpHigh;
+}
+else if (D >= 1.60) {
+    level = tr.levelModerate;
+    backgroundColor = "#f59e0b";
+    interpretation = tr.interpModerate;
+}
+else if (D >= 1.00) {
+    level = tr.levelLow;
+    backgroundColor = "#ef4444";
+    interpretation = tr.interpLow;
+}
+else {
+    level = tr.levelCritical;
+    backgroundColor = "#991b1b";
+    interpretation = tr.interpCritical;
 }
                 // Проверяем элементы вывода
                 const outputs = ['res-d-score', 'res-level', 'res-period', 'res-formula', 'res-vector', 'result-card', 'res-interpretation'];
